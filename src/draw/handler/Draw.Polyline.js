@@ -33,7 +33,8 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 		metric: true, // Whether to use the metric measurement system or imperial
 		feet: true, // When not metric, to use feet instead of yards for display.
 		showLength: true, // Whether to display distance in the tooltip
-		zIndexOffset: 2000 // This should be > than the highest z-index any map layers
+		zIndexOffset: 2000, // This should be > than the highest z-index any map layers
+        actionType: ''
 	},
 
 	initialize: function (map, options) {

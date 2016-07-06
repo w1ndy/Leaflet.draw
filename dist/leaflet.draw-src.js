@@ -179,7 +179,7 @@ L.Draw.Feature = L.Handler.extend({
 	},
 
 	_fireCreatedEvent: function (layer) {
-		this._map.fire('draw:created', { layer: layer, layerType: this.type });
+		this._map.fire('draw:created', { layer: layer, layerType: this.type, actionType: this.options.actionType });
 	},
 
 	// Cancel drawing when the escape key is pressed
@@ -189,6 +189,7 @@ L.Draw.Feature = L.Handler.extend({
 		}
 	}
 });
+
 
 L.Draw.Polyline = L.Draw.Feature.extend({
 	statics: {
@@ -225,7 +226,8 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 		metric: true, // Whether to use the metric measurement system or imperial
 		feet: true, // When not metric, to use feet instead of yards for display.
 		showLength: true, // Whether to display distance in the tooltip
-		zIndexOffset: 2000 // This should be > than the highest z-index any map layers
+		zIndexOffset: 2000, // This should be > than the highest z-index any map layers
+        actionType: ''
 	},
 
 	initialize: function (map, options) {
@@ -782,7 +784,8 @@ L.SimpleShape = {};
 
 L.Draw.SimpleShape = L.Draw.Feature.extend({
 	options: {
-		repeatMode: false
+		repeatMode: false,
+        actionType: ''
 	},
 
 	initialize: function (map, options) {
@@ -879,6 +882,7 @@ L.Draw.SimpleShape = L.Draw.Feature.extend({
 	}
 });
 
+
 L.Draw.Rectangle = L.Draw.SimpleShape.extend({
 	statics: {
 		TYPE: 'rectangle'
@@ -895,7 +899,8 @@ L.Draw.Rectangle = L.Draw.SimpleShape.extend({
 			fillOpacity: 0.2,
 			clickable: true
 		},
-		metric: true // Whether to use the metric measurement system or imperial
+		metric: true, // Whether to use the metric measurement system or imperial
+        actionType: ''
 	},
 
 	initialize: function (map, options) {
@@ -958,8 +963,10 @@ L.Draw.Circle = L.Draw.SimpleShape.extend({
 		},
 		showRadius: true,
 		metric: true, // Whether to use the metric measurement system or imperial
-		feet: true // When not metric, use feet instead of yards for display
-	},
+		feet: true, // When not metric, use feet instead of yards for display
+	    actionType: ''
+    },
+    
 
 	initialize: function (map, options) {
 		// Save the type so super can fire, need to do this as cannot do this.TYPE :(
@@ -1015,7 +1022,8 @@ L.Draw.Marker = L.Draw.Feature.extend({
 	options: {
 		icon: new L.Icon.Default(),
 		repeatMode: false,
-		zIndexOffset: 2000 // This should be > than the highest z-index any markers
+		zIndexOffset: 2000, // This should be > than the highest z-index any markers
+        actionType: ''
 	},
 
 	initialize: function (map, options) {

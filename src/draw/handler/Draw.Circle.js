@@ -16,8 +16,10 @@ L.Draw.Circle = L.Draw.SimpleShape.extend({
 		},
 		showRadius: true,
 		metric: true, // Whether to use the metric measurement system or imperial
-		feet: true // When not metric, use feet instead of yards for display
-	},
+		feet: true, // When not metric, use feet instead of yards for display
+	    actionType: ''
+    },
+    
 
 	initialize: function (map, options) {
 		// Save the type so super can fire, need to do this as cannot do this.TYPE :(
